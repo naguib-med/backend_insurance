@@ -31,6 +31,15 @@ router
   .prefix('/contracts')
   .use(middleware.auth())
 
+router
+  .group(() => {
+    router.get('/', 'SubscriptionController.index')
+    router.post('/', 'SubscriptionController.store')
+    router.delete('/:id', 'SubscriptionController.destroy')
+  })
+  .prefix('/subscriptions')
+  .use(middleware.auth())
+
 router.get('/', async () => {
   return {
     hello: 'world',
